@@ -1,0 +1,45 @@
+.control{
+  width:400px;
+  height:40px;
+  
+  
+}
+span#s {
+    display:block;
+}
+.parent{
+  
+  display: flex;
+  height: 600px;
+  width: 600px;
+  align-items: center;
+  justify-content:center;
+  
+  flex-direction: column;
+
+}
+.grandpa{
+  height: 900px;
+  width: 100%;
+  background: url("./Background.avif");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aqua;
+   background-position: center;
+    background-size: cover;
+    flex-direction: column;
+
+}
+tr{
+  height: 80px;
+}
+label{
+  font-size: larger;
+}
+div#name{
+  background-color: blueviolet;
+}
+div#email{
+  background-color:red;
+}

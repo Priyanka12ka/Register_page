@@ -1,0 +1,166 @@
+<html>
+ <head>
+   <title>registration page</title>
+   <link rel="stylesheet" href="MyCss.css" />
+     <script type='text/javascript'>
+
+	    let validName = true;
+        let validEmail = true;
+        let validPhone = true;
+        let validDOB = true; 
+        function fullNameValidation(s){
+            let span = document.getElementById("fullNameStatus");
+            let isvalid = true;
+            for(let i = 0; i<s.length; i++){
+                if ((s.charCodeAt(i) >= 'a'.charCodeAt(0) && s.charCodeAt(i) <= 'z'.charCodeAt(0)) || (s.charCodeAt(i) >= 'A'.charCodeAt(0) && s.charCodeAt(i) <= 'Z'.charCodeAt(0)) || s.charCodeAt(i) == ' '.charCodeAt(0))
+               {
+                    
+               }
+                else
+                {
+                    isvalid = false;
+                    break;
+                }
+            }
+            if(!isvalid){
+                span.innerHTML = "Invalid"
+                span.style.color = "red";
+                validName = false;
+            }else{
+                span.innerHTML = "";
+                validName = true;
+            }
+        }
+      function validateEmail(str){  
+	    let index=str.indexOf("@");  
+		  let index1=str.lastIndexOf("@");  
+		let span=document.getElementById("emailError"); // Target the new error span
+		  if(index<=0 || index!=index1)      //0 ani negative index la @asel tr invalid 
+		  {   span.innerHTML="Invalid email";
+			  span.style.color="red";
+		  }
+		  else
+		  {   let as=str.substring((index+1));
+            index=as.indexOf(".");
+	           index1=as.lastIndexOf(".");
+	       if((index==-1 || index!=index1) || (index!=(as.length-4) && index!=(as.length-3) ))
+			   { span.innerHTML="Invalid email";
+			     span.style.color="red";
+			   }
+			   else{
+			          validEmail =true;
+                span.innerHTML=""; // Clear the error message
+                span.style.color="inherit"; // Reset to default text color (or 'black') 
+			  }
+		  }	
+	  }
+
+      function phoneValidation(s){
+            let isValid = true;
+            let phoneStatus = document.getElementById("PhoneNo");
+            for(let i = 0; i<s.length; i++){
+                if(s.charCodeAt(0) <= '6'.charCodeAt(0)){
+                    isValid = false;
+                    break;
+                }
+                if(s.charCodeAt(i) >= '0'.charCodeAt(0) && s.charCodeAt(i) <= '9'.charCodeAt(0)){}
+                else{
+                    isValid = false;
+                    break;
+                }
+                if(s.length > 10){
+                    isValid = false;
+                    break;
+                }
+            }
+            if(isValid){
+                PhoneNo.innerHTML = '';  
+                validPhone = true; 
+            }else{
+                PhoneNo.innerHTML = "Invaild Phone Number";
+                PhoneNo.style.color = 'red';
+                validPhone = false;
+            }
+          }
+          function IsSubmit()
+          {
+            let form=document.getElementById("formsubmit")
+            if( validName==true && validEmail == true&&validPhone ==true)
+            {
+              form.submit();
+            }
+          }
+
+  </script>
+
+ </head>
+ <body>
+	
+ <form name='frm' action='/save' method='POST'>
+  <div class="GrandPa">
+     <h1>Register Page</h1>
+  <div class="parent">
+   
+	<table>
+		<tr>
+      
+            <td><label for="nameInput">Enter name:</label></td>
+            <td><input type='text' name='name' value='' class='control' id="nameInput" onkeyup="fullNameValidation(this.value)" />
+            <span id="fullNameStatus"></span></td>
+     
+	</tr>
+	<tr>
+	
+		
+      <td><label for="emailInput">Enter email: </label></td>
+      <td><input type='text' name='email' value='' class='control' id="emailInput" onkeyup="validateEmail(this.value)" />
+      <span id="emailError" style="color: red; "></span><br><br></td>
+  
+	</tr>
+	<tr>
+	
+      <td><label for="phone">Enter contact Number: </label></td>
+      <td><input type='text' name='contact' value='' class='control' id="phone" onkeyup="phoneValidation(this.value)" /><br><br>
+      <span id="PhoneNo"></span></td>
+   
+	</tr>
+    <tr>
+  
+            <td> <label for="qualification">Qualification:</label></td>
+             <td> <select id="qualification" name="qualification" required class="control">
+                    <option value="">--Select Qualification--</option>
+                    <option value="High School">High School</option>
+                    <option value="Diploma">Diploma</option>
+                    <option value="Bachelor's Degree">Bachelor's Degree</option>
+                    <option value="Master's Degree">Master's Degree</option>
+                    <option value="Ph.D.">Ph.D.</option>
+                    <option value="Other">Other</option>
+                </select>
+			</td>     
+     </tr>
+     <tr>
+		<td><label for="date">date of Birth</label></td>
+		<td><input type="date" name="date" placeholder="Date of Birth" class="control" id="date"></td>
+	</tr>
+  
+  <tr>
+    <td><label for="University">Select University </label></td>
+    <td>
+      <select name="University" id="University" required class="control">
+        <option value="">Select</option>
+        <option value="SPPU">SPPU University</option>
+        <option value="Jyotiba phule">Jyotiba Fule University</option>
+        <option value="Chhatrpati Shivaji Maharaj University kolhapur">Chhatrpati Shivaji Maharaj University Kolhapur</option>
+      </select>
+    </td>
+  </tr>
+ 
+  </table>
+  
+  <input type='submit' name='' value='Register'  class='control' id="formsubmit" onclick="IsSubmit()"/>
+ 
+ </form>
+</div>
+</div>
+ </body>
+</html>
